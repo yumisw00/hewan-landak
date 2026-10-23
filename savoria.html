@@ -22,54 +22,85 @@
             }
         }
     </script>
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        html, body {
+            overscroll-behavior-y: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 <body class="bg-stone-950 text-stone-100 font-sans antialiased pb-28">
 
     <!-- NAVBAR -->
     <nav class="fixed w-full z-40 bg-stone-950/85 backdrop-blur-md border-b border-stone-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-amber-500 text-stone-950 flex items-center justify-center font-bold text-xl">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-500 text-stone-950 flex items-center justify-center font-bold text-lg sm:text-xl">
                     <i class="fa-solid fa-utensils"></i>
                 </div>
                 <div>
-                    <span id="nav-nama-resto" class="font-serif font-bold text-xl text-white tracking-wide block leading-none">SAVORIA</span>
-                    <span id="nav-tagline" class="text-[11px] text-amber-400 tracking-widest uppercase">Authentic Culinary</span>
+                    <span id="nav-nama-resto" class="font-serif font-bold text-lg sm:text-xl text-white tracking-wide block leading-none">SAVORIA</span>
+                    <span id="nav-tagline" class="text-[10px] sm:text-[11px] text-amber-400 tracking-widest uppercase">Authentic Culinary</span>
                 </div>
-            </div>
+            </a>
+
+            <!-- Desktop Links -->
             <div class="hidden md:flex gap-8 text-sm font-medium text-stone-300">
                 <a href="#menu" class="hover:text-amber-400 transition">Daftar Menu</a>
                 <a href="#keunggulan" class="hover:text-amber-400 transition">Keunggulan</a>
                 <a href="#lokasi" class="hover:text-amber-400 transition">Lokasi & Jam Buka</a>
             </div>
-            <button onclick="toggleModalKeranjang()" class="relative bg-stone-900 hover:bg-stone-800 border border-stone-700 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition">
-                <i class="fa-solid fa-bag-shopping text-amber-400 text-lg"></i>
-                <span class="hidden sm:inline">Pesanan</span>
-                <span id="badge-keranjang" class="bg-amber-500 text-stone-950 text-xs font-extrabold px-2 py-0.5 rounded-full">0</span>
-            </button>
+
+            <!-- Cart CTA & Mobile Hamburger -->
+            <div class="flex items-center gap-2">
+                <button onclick="toggleModalKeranjang()" class="relative bg-stone-900 hover:bg-stone-800 border border-stone-700 px-3.5 sm:px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-semibold flex items-center gap-2 transition active:scale-95 transition-transform">
+                    <i class="fa-solid fa-bag-shopping text-amber-400 text-base sm:text-lg"></i>
+                    <span class="hidden sm:inline">Pesanan</span>
+                    <span id="badge-keranjang" class="bg-amber-500 text-stone-950 text-xs font-extrabold px-2 py-0.5 rounded-full">0</span>
+                </button>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu" class="md:hidden w-11 h-11 rounded-xl bg-stone-900 border border-stone-800 text-stone-200 hover:text-amber-400 flex items-center justify-center text-lg active:scale-95 transition-transform">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Slide-down Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-950/95 backdrop-blur-xl border-b border-stone-800 px-4 pt-2 pb-4 space-y-1 shadow-2xl">
+            <a href="#menu" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-sm font-medium text-stone-200 hover:bg-stone-900 hover:text-amber-400 active:scale-95 transition-transform">Daftar Menu</a>
+            <a href="#keunggulan" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-sm font-medium text-stone-200 hover:bg-stone-900 hover:text-amber-400 active:scale-95 transition-transform">Keunggulan</a>
+            <a href="#lokasi" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-sm font-medium text-stone-200 hover:bg-stone-900 hover:text-amber-400 active:scale-95 transition-transform">Lokasi & Jam Buka</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-stone-900">
+    <section class="relative pt-24 pb-12 md:pt-36 md:pb-24 overflow-hidden border-b border-stone-900">
         <div class="absolute inset-0 opacity-25 bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-950/60"></div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-widest mb-5">
+            <span class="inline-block px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-widest mb-4 sm:mb-5">
                 <i class="fa-solid fa-star mr-1"></i> 100% Bahan Segar & Halal
             </span>
-            <h1 id="hero-judul" class="font-serif text-4xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 id="hero-judul" class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Cita Rasa Istimewa di Setiap Hidangan
             </h1>
-            <p id="hero-deskripsi" class="max-w-xl mx-auto text-stone-300 text-base sm:text-lg mb-8">
+            <p id="hero-deskripsi" class="max-w-xl mx-auto text-stone-300 text-sm sm:text-lg mb-7 sm:mb-8 leading-relaxed">
                 Pesan langsung dari meja Anda atau pesan antar ke rumah tanpa antre dan tanpa biaya tambahan aplikasi.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#menu" class="bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-8 py-4 rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center gap-2">
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                <a href="#menu" class="bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-7 py-3.5 rounded-xl transition active:scale-95 transition-transform shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 text-sm sm:text-base">
                     <i class="fa-solid fa-book-open"></i> Lihat Menu & Pesan
                 </a>
-                <a href="#lokasi" class="bg-stone-900/90 hover:bg-stone-800 text-white border border-stone-700 font-semibold px-8 py-4 rounded-xl transition flex items-center gap-2">
+                <a href="#lokasi" class="bg-stone-900/90 hover:bg-stone-800 text-white border border-stone-700 font-semibold px-7 py-3.5 rounded-xl transition active:scale-95 transition-transform flex items-center justify-center gap-2 text-sm sm:text-base">
                     <i class="fa-solid fa-location-dot text-amber-400"></i> Reservasi / Katering
                 </a>
             </div>
@@ -77,60 +108,60 @@
     </section>
 
     <!-- KATALOG MENU INTERAKTIF -->
-    <section id="menu" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+    <section id="menu" class="py-12 md:py-20 max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 sm:mb-10 gap-4">
             <div>
                 <h2 class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">Katalog Digital</h2>
-                <h3 class="font-serif text-3xl font-bold text-white">Pilih Menu Favorit Anda</h3>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">Pilih Menu Favorit Anda</h3>
             </div>
-            <!-- Filter Kategori -->
-            <div class="flex flex-wrap gap-2" id="kategori-container">
-                <button onclick="filterMenu('Semua')" class="btn-kategori bg-amber-500 text-stone-950 font-bold px-4 py-2 rounded-lg text-xs transition">Semua</button>
-                <button onclick="filterMenu('Makanan')" class="btn-kategori bg-stone-900 text-stone-300 hover:bg-stone-800 px-4 py-2 rounded-lg text-xs font-semibold transition">Makanan Utama</button>
-                <button onclick="filterMenu('Minuman')" class="btn-kategori bg-stone-900 text-stone-300 hover:bg-stone-800 px-4 py-2 rounded-lg text-xs font-semibold transition">Minuman Segar</button>
-                <button onclick="filterMenu('Paket')" class="btn-kategori bg-stone-900 text-stone-300 hover:bg-stone-800 px-4 py-2 rounded-lg text-xs font-semibold transition">Paket Katering / Hemat</button>
+            <!-- Filter Kategori (Horizontal Scroll Mobile-Native seperti GoFood/ShopeeFood) -->
+            <div class="w-full md:w-auto flex overflow-x-auto no-scrollbar whitespace-nowrap gap-2 pb-2" id="kategori-container">
+                <button onclick="filterMenu('Semua')" class="btn-kategori shrink-0 bg-amber-500 text-stone-950 font-bold px-4 py-3 rounded-xl text-xs transition active:scale-95 transition-transform">Semua</button>
+                <button onclick="filterMenu('Makanan')" class="btn-kategori shrink-0 bg-stone-900 text-stone-300 hover:bg-stone-800 border border-stone-800 px-4 py-3 rounded-xl text-xs font-semibold transition active:scale-95 transition-transform">Makanan Utama</button>
+                <button onclick="filterMenu('Minuman')" class="btn-kategori shrink-0 bg-stone-900 text-stone-300 hover:bg-stone-800 border border-stone-800 px-4 py-3 rounded-xl text-xs font-semibold transition active:scale-95 transition-transform">Minuman Segar</button>
+                <button onclick="filterMenu('Paket')" class="btn-kategori shrink-0 bg-stone-900 text-stone-300 hover:bg-stone-800 border border-stone-800 px-4 py-3 rounded-xl text-xs font-semibold transition active:scale-95 transition-transform">Paket Katering / Hemat</button>
             </div>
         </div>
 
         <!-- Grid Daftar Menu (Di-render otomatis oleh JavaScript) -->
-        <div id="grid-menu" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="grid-menu" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
     </section>
 
     <!-- KEUNGGULAN / KENAPA KAMI -->
-    <section id="keunggulan" class="py-16 bg-stone-900/50 border-y border-stone-900">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 text-center">
-            <div class="p-6">
-                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+    <section id="keunggulan" class="py-12 md:py-20 bg-stone-900/50 border-y border-stone-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-6 sm:gap-8 text-center">
+            <div class="p-5 sm:p-6 bg-stone-900/40 rounded-2xl border border-stone-800/60">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl sm:text-2xl mx-auto mb-3.5">
                     <i class="fa-solid fa-fire-burner"></i>
                 </div>
-                <h4 class="font-bold text-lg text-white mb-2">Dimasak Dadakan (Fresh)</h4>
-                <p class="text-stone-400 text-sm">Setiap pesanan diproses langsung oleh koki berpengalaman menggunakan bahan pilihan berkualitas tinggi.</p>
+                <h4 class="font-bold text-base sm:text-lg text-white mb-1.5">Dimasak Dadakan (Fresh)</h4>
+                <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">Setiap pesanan diproses langsung oleh koki berpengalaman menggunakan bahan pilihan berkualitas tinggi.</p>
             </div>
-            <div class="p-6">
-                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+            <div class="p-5 sm:p-6 bg-stone-900/40 rounded-2xl border border-stone-800/60">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl sm:text-2xl mx-auto mb-3.5">
                     <i class="fa-solid fa-tags"></i>
                 </div>
-                <h4 class="font-bold text-lg text-white mb-2">Harga Asli Resto</h4>
-                <p class="text-stone-400 text-sm">Pesan lewat website resmi kami dijamin mendapatkan harga asli tanpa markup biaya komisi aplikasi.</p>
+                <h4 class="font-bold text-base sm:text-lg text-white mb-1.5">Harga Asli Resto</h4>
+                <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">Pesan lewat website resmi kami dijamin mendapatkan harga asli tanpa markup biaya komisi aplikasi.</p>
             </div>
-            <div class="p-6">
-                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+            <div class="p-5 sm:p-6 bg-stone-900/40 rounded-2xl border border-stone-800/60">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl sm:text-2xl mx-auto mb-3.5">
                     <i class="fa-solid fa-boxes-packing"></i>
                 </div>
-                <h4 class="font-bold text-lg text-white mb-2">Terima Pesanan Besar</h4>
-                <p class="text-stone-400 text-sm">Melayani pesanan nasi kotak, rapat kantor, syukuran, hingga katering harian dengan pengantaran tepat waktu.</p>
+                <h4 class="font-bold text-base sm:text-lg text-white mb-1.5">Terima Pesanan Besar</h4>
+                <p class="text-stone-400 text-xs sm:text-sm leading-relaxed">Melayani pesanan nasi kotak, rapat kantor, syukuran, hingga katering harian dengan pengantaran tepat waktu.</p>
             </div>
         </div>
     </section>
 
     <!-- LOKASI & JAM OPERASIONAL -->
-    <section id="lokasi" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="bg-stone-900 border border-stone-800 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
+    <section id="lokasi" class="py-12 md:py-20 max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="bg-stone-900 border border-stone-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
             <div>
                 <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">Kunjungi Kami</span>
-                <h3 class="font-serif text-3xl font-bold text-white mt-2 mb-4">Lokasi & Jam Operasional</h3>
-                <p id="teks-alamat" class="text-stone-300 text-sm mb-6 leading-relaxed"></p>
-                <div class="space-y-3 text-sm text-stone-300 mb-8">
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-1.5 mb-3">Lokasi & Jam Operasional</h3>
+                <p id="teks-alamat" class="text-stone-300 text-xs sm:text-sm mb-5 leading-relaxed"></p>
+                <div class="space-y-2.5 text-xs sm:text-sm text-stone-300 mb-6">
                     <div class="flex items-center gap-3">
                         <i class="fa-regular fa-clock text-amber-400 w-5"></i>
                         <span id="teks-jam">Senin - Minggu: 10.00 - 22.00 WIB</span>
@@ -140,15 +171,15 @@
                         <span id="teks-telp">+62 812-3456-7890</span>
                     </div>
                 </div>
-                <button onclick="hubungiAdminUmum()" class="bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-white font-semibold px-6 py-3 rounded-xl text-sm transition flex items-center gap-2">
+                <button onclick="hubungiAdminUmum()" class="w-full sm:w-auto bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-white font-semibold px-6 py-3.5 rounded-xl text-sm transition active:scale-95 transition-transform flex items-center justify-center gap-2">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Tanya Admin / Booking Tempat
                 </button>
             </div>
-            <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 text-center">
-                <i class="fa-solid fa-map-location-dot text-5xl text-amber-400 mb-4"></i>
-                <h4 class="font-bold text-white mb-2">Petunjuk Arah Google Maps</h4>
-                <p class="text-xs text-stone-400 mb-6">Klik tombol di bawah untuk membuka navigasi langsung menuju lokasi outlet kami.</p>
-                <a id="link-gmaps" href="https://maps.google.com" target="_blank" class="inline-block w-full py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition">
+            <div class="bg-stone-950 p-5 sm:p-6 rounded-2xl border border-stone-800 text-center">
+                <i class="fa-solid fa-map-location-dot text-4xl sm:text-5xl text-amber-400 mb-3"></i>
+                <h4 class="font-bold text-white mb-1.5">Petunjuk Arah Google Maps</h4>
+                <p class="text-xs text-stone-400 mb-5">Klik tombol di bawah untuk membuka navigasi langsung menuju lokasi outlet kami.</p>
+                <a id="link-gmaps" href="https://maps.google.com" target="_blank" class="inline-block w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition active:scale-95 transition-transform">
                     Buka di Google Maps
                 </a>
             </div>
@@ -156,57 +187,63 @@
     </section>
 
     <!-- FOOTER (BRANDING PT INTI LOGIKA DIGITAL) -->
-    <footer class="border-t border-stone-900 py-8 text-center text-xs text-stone-500">
+    <footer class="border-t border-stone-900 py-8 px-4 text-center text-xs text-stone-500">
         <p class="mb-1">&copy; 2026 <span id="footer-nama" class="text-stone-300 font-semibold">Savoria Resto</span>. Hak Cipta Dilindungi.</p>
         <p>Sistem Katalog & Kasir Digital dikembangkan oleh <a href="index.html" class="text-amber-400 hover:underline font-semibold">PT Inti Logika Digital</a></p>
     </footer>
 
-    <!-- FLOATING BAR KERanjang BELANJA (MUNCUL SAAT ADA PESANAN) -->
-    <div id="floating-cart" class="fixed bottom-4 inset-x-4 max-w-3xl mx-auto z-40 hidden">
-        <div class="bg-amber-500 text-stone-950 p-4 rounded-2xl shadow-2xl flex justify-between items-center border-2 border-amber-300">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-stone-950 text-amber-400 flex items-center justify-center font-bold">
+    <!-- FLOATING ACTION BUTTON (CTA UTAMA MANDIRI) -->
+    <a href="#menu" class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-30 bg-amber-500 hover:bg-amber-400 text-stone-950 px-5 py-3.5 rounded-full text-sm font-extrabold shadow-2xl shadow-amber-500/30 border border-amber-300 flex items-center gap-2.5 active:scale-95 transition-transform">
+        <i class="fa-solid fa-book-open text-base"></i>
+        <span>Pesan Menu Sekarang</span>
+    </a>
+
+    <!-- FLOATING BAR KERANJANG BELANJA (MUNCUL SAAT ADA PESANAN) -->
+    <div id="floating-cart" class="fixed bottom-3 sm:bottom-4 inset-x-3 sm:inset-x-4 max-w-3xl mx-auto z-40 hidden">
+        <div class="bg-amber-500 text-stone-950 p-3 sm:p-4 rounded-2xl shadow-2xl flex justify-between items-center gap-3 border-2 border-amber-300">
+            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-stone-950 text-amber-400 flex items-center justify-center font-extrabold shrink-0">
                     <span id="float-jumlah">0</span>
                 </div>
-                <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider block">Total Estimasi Pesanan</span>
-                    <span id="float-total" class="text-lg font-extrabold">Rp 0</span>
+                <div class="truncate">
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider block leading-tight">Total Estimasi</span>
+                    <span id="float-total" class="text-base sm:text-lg font-extrabold truncate block">Rp 0</span>
                 </div>
             </div>
-            <button onclick="toggleModalKeranjang()" class="bg-stone-950 hover:bg-stone-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2">
+            <button onclick="toggleModalKeranjang()" class="shrink-0 bg-stone-950 hover:bg-stone-800 text-white px-4 sm:px-5 py-3 rounded-xl font-bold text-xs sm:text-sm transition active:scale-95 transition-transform flex items-center gap-1.5">
                 Lanjut Pesan <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </div>
 
     <!-- MODAL CHECKOUT WHATSAPP -->
-    <div id="modal-keranjang" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-stone-900 border border-stone-800 rounded-3xl max-w-lg w-full p-6 max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center pb-4 border-b border-stone-800">
-                <h3 class="font-bold text-lg text-white flex items-center gap-2">
+    <div id="modal-keranjang" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-stone-900 border-t sm:border border-stone-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-6 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-3.5 border-b border-stone-800">
+                <h3 class="font-bold text-base sm:text-lg text-white flex items-center gap-2">
                     <i class="fa-solid fa-receipt text-amber-400"></i> Ringkasan Pesanan Anda
                 </h3>
-                <button onclick="toggleModalKeranjang()" class="text-stone-400 hover:text-white text-xl">&times;</button>
+                <button onclick="toggleModalKeranjang()" class="w-10 h-10 rounded-xl bg-stone-800 text-stone-300 hover:text-white flex items-center justify-center text-xl active:scale-95 transition-transform">&times;</button>
             </div>
 
             <!-- Daftar Item di Keranjang -->
-            <div id="list-keranjang" class="py-4 space-y-3 overflow-y-auto flex-1"></div>
+            <div id="list-keranjang" class="py-4 space-y-2.5 overflow-y-auto flex-1"></div>
 
             <!-- Form Data Pemesan -->
             <div class="pt-4 border-t border-stone-800 space-y-3">
-                <div class="flex justify-between text-base font-bold text-white mb-2">
+                <div class="flex justify-between text-base font-bold text-white mb-1">
                     <span>Total Pembayaran:</span>
                     <span id="modal-total-harga" class="text-amber-400">Rp 0</span>
                 </div>
-                <input type="text" id="input-nama" placeholder="Nama Anda (Wajib diisi)" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
-                <select id="input-tipe" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                <input type="text" id="input-nama" placeholder="Nama Anda (Wajib diisi)" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
+                <select id="input-tipe" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
                     <option value="Makan di Tempat (Dine-In)">Makan di Tempat (Dine-In)</option>
                     <option value="Bungkus / Ambil Sendiri (Takeaway)">Bungkus / Ambil Sendiri (Takeaway)</option>
                     <option value="Pesan Antar (Delivery)">Pesan Antar Kurir (Delivery)</option>
                 </select>
-                <input type="text" id="input-catatan" placeholder="Nomor Meja / Alamat Antar / Catatan Pedas..." class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                <input type="text" id="input-catatan" placeholder="Nomor Meja / Alamat Antar / Catatan Pedas..." class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
 
-                <button onclick="kirimPesananWA()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg">
+                <button onclick="kirimPesananWA()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition active:scale-95 transition-transform flex items-center justify-center gap-2 shadow-lg">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Struk Pesanan ke WhatsApp
                 </button>
             </div>
@@ -270,25 +307,25 @@
                 container.innerHTML += `
                     <div class="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-amber-500/40 transition group">
                         <div>
-                            <div class="h-48 overflow-hidden relative">
+                            <div class="h-44 sm:h-48 overflow-hidden relative">
                                 <img src="${item.foto}" alt="${item.nama}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                 ${item.laris ? '<span class="absolute top-3 left-3 bg-amber-500 text-stone-950 text-[11px] font-extrabold px-2.5 py-1 rounded-full uppercase">Best Seller</span>' : ''}
                             </div>
-                            <div class="p-5">
+                            <div class="p-4 sm:p-5">
                                 <span class="text-[11px] text-amber-400 font-semibold uppercase tracking-wider">${item.kategori}</span>
-                                <h4 class="font-bold text-lg text-white mt-1 mb-2">${item.nama}</h4>
+                                <h4 class="font-bold text-base sm:text-lg text-white mt-1 mb-1.5">${item.nama}</h4>
                                 <p class="text-xs text-stone-400 leading-relaxed">${item.deskripsi}</p>
                             </div>
                         </div>
-                        <div class="px-5 pb-5 pt-3 border-t border-stone-800/60 flex justify-between items-center">
+                        <div class="px-4 sm:px-5 pb-4 sm:pb-5 pt-3 border-t border-stone-800/60 flex justify-between items-center">
                             <span class="font-extrabold text-amber-400 text-base">${formatRp(item.harga)}</span>
                             <div class="flex items-center gap-2">
                                 ${jmlDiKeranjang > 0 ? `
-                                    <button onclick="ubahQty(${item.id}, -1)" class="w-8 h-8 rounded-lg bg-stone-800 hover:bg-stone-700 text-white font-bold">-</button>
-                                    <span class="text-sm font-bold w-5 text-center">${jmlDiKeranjang}</span>
-                                    <button onclick="ubahQty(${item.id}, 1)" class="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 font-bold">+</button>
+                                    <button onclick="ubahQty(${item.id}, -1)" class="w-10 h-10 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-bold active:scale-95 transition-transform">-</button>
+                                    <span class="text-sm font-bold w-6 text-center">${jmlDiKeranjang}</span>
+                                    <button onclick="ubahQty(${item.id}, 1)" class="w-10 h-10 rounded-xl bg-amber-500 text-stone-950 font-bold active:scale-95 transition-transform">+</button>
                                 ` : `
-                                    <button onclick="ubahQty(${item.id}, 1)" class="bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-white px-4 py-2 rounded-xl text-xs font-bold transition">
+                                    <button onclick="ubahQty(${item.id}, 1)" class="bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-white px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold transition active:scale-95 transition-transform">
                                         + Tambah
                                     </button>
                                 `}
@@ -337,15 +374,15 @@
                 listContainer.innerHTML = `<p class="text-center text-stone-500 text-sm py-8">Belum ada menu yang dipilih.</p>`;
             } else {
                 listContainer.innerHTML = items.map(i => `
-                    <div class="flex justify-between items-center bg-stone-950 p-3 rounded-xl border border-stone-800">
-                        <div>
-                            <h5 class="text-sm font-bold text-white">${i.nama}</h5>
+                    <div class="flex justify-between items-center bg-stone-950 p-3 rounded-xl border border-stone-800 gap-2">
+                        <div class="min-w-0">
+                            <h5 class="text-sm font-bold text-white truncate">${i.nama}</h5>
                             <span class="text-xs text-amber-400">${formatRp(i.harga)} x ${i.qty} = ${formatRp(i.harga * i.qty)}</span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="ubahQty(${i.id}, -1)" class="w-7 h-7 rounded bg-stone-800 text-white text-xs font-bold">-</button>
-                            <span class="text-xs font-bold">${i.qty}</span>
-                            <button onclick="ubahQty(${i.id}, 1)" class="w-7 h-7 rounded bg-amber-500 text-stone-950 text-xs font-bold">+</button>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="ubahQty(${i.id}, -1)" class="w-9 h-9 rounded-lg bg-stone-800 text-white text-xs font-bold active:scale-95 transition-transform">-</button>
+                            <span class="text-xs font-bold w-4 text-center">${i.qty}</span>
+                            <button onclick="ubahQty(${i.id}, 1)" class="w-9 h-9 rounded-lg bg-amber-500 text-stone-950 text-xs font-bold active:scale-95 transition-transform">+</button>
                         </div>
                     </div>
                 `).join('');
@@ -379,6 +416,29 @@
         function hubungiAdminUmum() {
             const pesan = `Halo Admin *${CONFIG_RESTO.nama}*, saya ingin bertanya mengenai informasi reservasi tempat / pesanan katering.`;
             window.open(`https://wa.me/${CONFIG_RESTO.nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
         }
 
         // Jalankan saat halaman dimuat

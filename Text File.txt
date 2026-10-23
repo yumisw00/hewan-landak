@@ -1,0 +1,54 @@
+RANCANGAN AWAL: "Inti Logika Talent Incubator"
+1. Rahasia Mengubah Anak Magang Menjadi Aset Produktif
+
+Di jurusan D3 TI, tidak semua mahasiswa jago coding berat. Jika semuanya dipaksa jadi Fullstack Developer, setengahnya akan gagal. Maka di PT Inti Logika Digital, kita bagi mereka ke dalam 3 Role (Posisi) Resmi (yang namanya sangat keren untuk laporan magang mereka):
+
+    IT Business Analyst & Growth (1 Orang per Tim):
+
+        Cocok untuk: Adik tingkat yang kurang suka coding rumit, tapi komunikatif, rapi bikin laporan, dan aktif di sosmed.
+
+        Tugas: Mencari calon klien di Google Maps/IG, mengedit variabel CONFIG pada demo web sesuai nama calon klien, mengirim penawaran WA, dan mendata kebutuhan klien.
+
+    Frontend & Cloud Deployment Engineer (1-2 Orang per Tim):
+
+        Cocok untuk: Adik tingkat yang suka desain UI/UX, HTML, dan Tailwind CSS.
+
+        Tugas: Mengkustomisasi tampilan web klien yang sudah bayar DP, memasang foto/menu klien, hingga men-deploy ke Cloudflare Pages & menyambungkan domain.
+
+    Software Engineer / R&D (1 Orang per Tim):
+
+        Cocok untuk: Adik tingkat yang logika pemrogramannya kuat (PHP/Laravel/JS/Database).
+
+        Tugas: Membangun fitur baru atau membuat 1 Produk Aplikasi Web Baru (misal: Sistem Kasir, Sistem Booking Barbershop, atau Sistem Informasi Sekolah) yang nantinya menjadi Aset Produk PT Anda sekaligus menjadi Bahan Laporan Magang / Tugas Akhir (TA) dia! (Win-win solution!).
+
+2. Kurikulum 3-4 Bulan (Berbasis Output Nyata)
+
+Setiap bulan harus menghasilkan aset untuk perusahaan Anda:
+
+    Bulan 1 (Onboarding & Pabrik Template):
+
+        Belajar SOP Git/GitHub, Tailwind CSS, Cloudflare Pages, dan struktur CONFIG PT Inti Logika Digital.
+
+        Tugas Wajib Bulan 1: Setiap tim wajib melahirkan 1 Master Template Industri Baru (misal: Template Rental Mobil, Template Kos-kosan, atau Template Bengkel). Hasilnya: Katalog jualan PT Anda bertambah banyak tanpa Anda harus capek ngoding sendiri!
+
+    Bulan 2 (Live Client & Eksekusi Pasar):
+
+        Terjun menawarkan demo ke UMKM/Bisnis lokal dan mengerjakan proyek klien berbayar dengan target waktu maksimal 3 hari per web.
+
+    Bulan 3 - 4 (Capstone Project & Laporan Kampus):
+
+        Membangun sistem kustom untuk klien atau produk SaaS internal PT, sembari menyusun Laporan Magang untuk dosen pembimbing.
+
+3. Skema Uang Saku "Anti-Boncos" (Berbasis Bagi Hasil)
+
+Jangan janjikan gaji bulanan tetap di awal. Gunakan skema Insentif Berbasis Proyek (Project-Based Commission):
+
+    Setiap ada proyek Rp1.500.000 yang cair:
+
+        40% (Rp600.000): Masuk Kas PT Inti Logika Digital (untuk modal domain, kas perusahaan, dan dividen Anda sebagai Direktur).
+
+        25% (Rp375.000): Untuk anak magang yang berhasil mendapatkan klien tersebut (IT Business Analyst).
+
+        35% (Rp525.000): Untuk anak magang yang mengerjakan kodingan webnya sampai selesai (Engineer).
+
+    Dampaknya: Jika satu tim berhasil menyelesaikan 4 web saja dalam sebulan, adik tingkat Anda bisa mengantongi Rp900.000 - Rp1.500.000/bulan (jauh lebih besar dari magang di instansi pemerintah yang Rp0!), dan kas PT Anda bertambah Rp2.400.000 bersih!
