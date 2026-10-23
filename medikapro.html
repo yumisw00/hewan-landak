@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedikaPro Clinic & Dental Care | Reservasi Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] } } }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-xl shadow-md shadow-teal-600/20">
+                    <i class="fa-solid fa-staff-snake"></i>
+                </div>
+                <div>
+                    <span id="nav-nama" class="font-extrabold text-lg text-slate-900 block leading-none">MEDIKAPRO</span>
+                    <span id="nav-tagline" class="text-[11px] text-teal-600 font-semibold tracking-wider uppercase">Clinic & Dental Care</span>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+                <a href="#layanan" class="hover:text-teal-600 transition">Poliklinik & Layanan</a>
+                <a href="#dokter" class="hover:text-teal-600 transition">Jadwal Dokter</a>
+                <a href="#reservasi" class="hover:text-teal-600 transition">Daftar Antrean</a>
+            </div>
+            <a href="#reservasi" class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-teal-600/20 flex items-center gap-2">
+                <i class="fa-regular fa-calendar-check"></i> Booking Jadwal
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-20 bg-gradient-to-b from-teal-50/70 to-slate-50 border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-100 text-teal-800 text-xs font-bold mb-6">
+                    <i class="fa-solid fa-shield-heart"></i> Terakreditasi Resmi & Peralatan Modern
+                </div>
+                <h1 id="hero-judul" class="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight mb-5">
+                    Layanan Kesehatan Keluarga Tanpa Antre Lama
+                </h1>
+                <p id="hero-deskripsi" class="text-slate-600 text-base leading-relaxed mb-8">
+                    Konsultasi medis, perawatan gigi, dan pemeriksaan kesehatan bersama dokter spesialis berpengalaman. Daftar antrean dari rumah, datang langsung diperiksa.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#reservasi" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-7 py-4 rounded-xl transition shadow-xl shadow-teal-600/20 flex items-center gap-2">
+                        Ambil Nomor Antrean <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#dokter" class="bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-semibold px-7 py-4 rounded-xl transition">
+                        Lihat Jadwal Dokter
+                    </a>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-slate-200">
+                    <div>
+                        <span class="text-2xl font-extrabold text-teal-600">15+</span>
+                        <span class="text-xs text-slate-500 block">Tenaga Medis Ahli</span>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold text-teal-600">10rb+</span>
+                        <span class="text-xs text-slate-500 block">Pasien Terlayani</span>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold text-teal-600">4.9/5</span>
+                        <span class="text-xs text-slate-500 block">Rating Kepuasan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Klinik Modern" class="rounded-3xl shadow-2xl border-4 border-white object-cover h-[420px] w-full">
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-semibold block">Respon Cepat 24 Jam</span>
+                        <span class="text-sm font-extrabold text-slate-800">Konfirmasi Instan via WA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAYANAN KLINIK -->
+    <section id="layanan" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-teal-600 font-bold text-xs uppercase tracking-widest">Poliklinik & Tindakan</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Layanan Medis Unggulan</h2>
+        </div>
+        <div id="grid-layanan" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- JADWAL DOKTER -->
+    <section id="dokter" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-teal-600 font-bold text-xs uppercase tracking-widest">Tim Medis Kami</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Jadwal Praktik Dokter</h2>
+                </div>
+                <p class="text-slate-500 text-sm mt-2 md:mt-0">Klik tombol pada kartu dokter untuk langsung memilih jadwal konsultasi.</p>
+            </div>
+            <div id="grid-dokter" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- FORM RESERVasi ANTREAN ONLINE (FITUR UTAMA) -->
+    <section id="reservasi" class="py-16 max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="bg-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div class="text-center mb-8">
+                <span class="bg-teal-500/20 text-teal-300 border border-teal-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">Sistem E-Reservasi</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold mt-3">Formulir Pendaftaran Pasien</h2>
+                <p class="text-slate-400 text-sm mt-1">Isi data di bawah ini untuk mendapatkan nomor antrean prioritas tanpa menunggu lama di klinik.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Nama Lengkap Pasien *</label>
+                    <input type="text" id="form-nama" placeholder="Contoh: Budi Santoso" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Usia & Jenis Pasien</label>
+                    <select id="form-kategori" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400">
+                        <option value="Pasien Umum / Pribadi">Pasien Umum / Mandiri</option>
+                        <option value="Pasien Asuransi Swasta">Asuransi Kesehatan Swasta</option>
+                        <option value="Pasien BPJS Kesehatan">BPJS Kesehatan</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Pilih Layanan / Poliklinik *</label>
+                    <select id="form-layanan" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400"></select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Pilih Dokter Praktik *</label>
+                    <select id="form-dokter" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400"></select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Rencana Tanggal Kunjungan *</label>
+                    <input type="date" id="form-tanggal" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Pilih Sesi Waktu *</label>
+                    <select id="form-sesi" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400">
+                        <option value="Pagi (09.00 - 12.00)">Sesi Pagi (09.00 - 12.00)</option>
+                        <option value="Siang (13.00 - 16.00)">Sesi Siang (13.00 - 16.00)</option>
+                        <option value="Sore/Malam (16.00 - 20.00)">Sesi Sore/Malam (16.00 - 20.00)</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="text-xs font-semibold text-slate-300 block mb-2">Keluhan Singkat / Tindakan yang Diinginkan</label>
+                    <input type="text" id="form-keluhan" placeholder="Contoh: Scaling karang gigi / Konsultasi demam anak..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal-400">
+                </div>
+            </div>
+
+            <button onclick="kirimReservasiWA()" class="w-full mt-6 py-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-extrabold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Dapatkan Tiket Antrean via WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-500">
+        <p class="mb-1"><strong id="footer-nama" class="text-slate-800">MedikaPro Clinic</strong> — <span id="footer-alamat"></span></p>
+        <p>Sistem E-Klinik & Reservasi Digital oleh <a href="index.html" class="text-teal-600 font-bold hover:underline">PT Inti Logika Digital</a></p>
+    </footer>
+
+    <!-- =========================================================================
+         ENGINE KONFIGURASI KLINIK (EDIT DATA KLIEN DI SINI SAJA)
+         ========================================================================= -->
+    <script>
+        const CONFIG_KLINIK = {
+            nama: "MedikaPro Clinic & Dental",
+            tagline: "Primary & Dental Healthcare",
+            judulHero: "Perawatan Kesehatan & Gigi Modern Tanpa Antre",
+            deskripsiHero: "Didukung dokter ramah dan peralatan medis berstandar tinggi. Booking jadwal konsultasi Anda secara online dalam 1 menit.",
+            nomorWA: "6281234567890",
+            alamat: "Jl. Kesehatan Raya No. 45, Kota Anda (Buka Senin - Sabtu: 08.00 - 20.00)"
+        };
+
+        const DATA_LAYANAN = [
+            { nama: "Poli Gigi & Estetika (Dental)", harga: "Mulai Rp 150.000", ikon: "fa-tooth", desc: "Scaling karang gigi, tambal estetik, cabut gigi tanpa sakit, behel, dan bleaching." },
+            { nama: "Poli Umum & Keluarga", harga: "Mulai Rp 75.000", ikon: "fa-stethoscope", desc: "Pemeriksaan kesehatan rutin, surat sehat, penanganan demam, flu, dan penyakit dalam." },
+            { nama: "Kesehatan Ibu & Anak (KIA)", harga: "Mulai Rp 100.000", ikon: "fa-baby", desc: "Imunisasi dasar lengkap, konsultasi tumbuh kembang anak, dan pemeriksaan kehamilan." },
+            { nama: "Cek Laboratorium & Darah", harga: "Mulai Rp 50.000", ikon: "fa-vials", desc: "Cek kolesterol, asam urat, gula darah lengkap, dan paket Medical Check-Up (MCU)." },
+            { nama: "Perawatan Luka & Homecare", harga: "Mulai Rp 120.000", ikon: "fa-kit-medical", desc: "Perawatan luka pasca operasi, luka diabetes, dan layanan kunjungan dokter ke rumah." },
+            { nama: "Klinik Kecantikan & Kulit", harga: "Mulai Rp 180.000", ikon: "fa-wand-magic-sparkles", desc: "Facial medis, penanganan jerawat akut, pencerahan wajah aman diawasi dokter." }
+        ];
+
+        const DATA_DOKTER = [
+            { nama: "drg. Nadia Putri, Sp.KG", spesialis: "Dokter Gigi Spesialis", jadwal: "Senin - Jumat (09.00 - 15.00)", foto: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&q=80" },
+            { nama: "dr. Hendra Wijaya", spesialis: "Dokter Umum & Kepala Klinik", jadwal: "Senin - Sabtu (08.00 - 16.00)", foto: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80" },
+            { nama: "drg. Reza Pratama", spesialis: "Dokter Gigi Estetik", jadwal: "Senin - Sabtu (15.00 - 20.00)", foto: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        function initKlinik() {
+            document.getElementById('nav-nama').innerText = CONFIG_KLINIK.nama;
+            document.getElementById('nav-tagline').innerText = CONFIG_KLINIK.tagline;
+            document.getElementById('hero-judul').innerText = CONFIG_KLINIK.judulHero;
+            document.getElementById('hero-deskripsi').innerText = CONFIG_KLINIK.deskripsiHero;
+            document.getElementById('footer-nama').innerText = CONFIG_KLINIK.nama;
+            document.getElementById('footer-alamat').innerText = CONFIG_KLINIK.alamat;
+            document.getElementById('form-tanggal').valueAsDate = new Date();
+
+            // Render Layanan
+            document.getElementById('grid-layanan').innerHTML = DATA_LAYANAN.map(l => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-teal-500 transition shadow-sm">
+                    <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid ${l.ikon}"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">${l.nama}</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">${l.desc}</p>
+                    <span class="text-xs font-extrabold text-teal-700 bg-teal-50 px-3 py-1 rounded-full">${l.harga}</span>
+                </div>
+            `).join('');
+
+            // Render Dokter
+            document.getElementById('grid-dokter').innerHTML = DATA_DOKTER.map(d => `
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <img src="${d.foto}" alt="${d.nama}" class="w-full h-56 object-cover object-top">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-teal-600 uppercase">${d.spesialis}</span>
+                            <h3 class="font-bold text-lg text-slate-900 mt-1">${d.nama}</h3>
+                            <p class="text-xs text-slate-500 mt-2"><i class="fa-regular fa-clock text-teal-600 mr-1"></i> ${d.jadwal}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <button onclick="pilihDokter('${d.nama}')" class="w-full py-2.5 bg-white hover:bg-teal-600 hover:text-white text-teal-700 border border-teal-600 rounded-xl text-xs font-bold transition">
+                            Pilih Dokter Ini
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Isi Dropdown Form
+            document.getElementById('form-layanan').innerHTML = DATA_LAYANAN.map(l => `<option value="${l.nama}">${l.nama}</option>`).join('');
+            document.getElementById('form-dokter').innerHTML = DATA_DOKTER.map(d => `<option value="${d.nama}">${d.nama} (${d.spesialis})</option>`).join('');
+        }
+
+        function pilihDokter(namaDokter) {
+            document.getElementById('form-dokter').value = namaDokter;
+            document.getElementById('reservasi').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function kirimReservasiWA() {
+            const nama = document.getElementById('form-nama').value.trim();
+            const kategori = document.getElementById('form-kategori').value;
+            const layanan = document.getElementById('form-layanan').value;
+            const dokter = document.getElementById('form-dokter').value;
+            const tanggal = document.getElementById('form-tanggal').value;
+            const sesi = document.getElementById('form-sesi').value;
+            const keluhan = document.getElementById('form-keluhan').value.trim() || "-";
+
+            if (!nama) return alert("Mohon isi Nama Lengkap Pasien terlebih dahulu.");
+
+            const pesan = `*TIKET RESERVASI ONLINE - ${CONFIG_KLINIK.nama.toUpperCase()}*\n----------------------------------\n*Nama Pasien:* ${nama}\n*Kategori:* ${kategori}\n*Poli/Layanan:* ${layanan}\n*Dokter Tujuan:* ${dokter}\n*Tanggal:* ${tanggal}\n*Sesi Waktu:* ${sesi}\n*Keluhan/Tindakan:* ${keluhan}\n----------------------------------\nMohon konfirmasi nomor antrean saya. Terima kasih!`;
+
+            window.open(`https://wa.me/${CONFIG_KLINIK.nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        initKlinik();
+    </script>
+</body>
+</html>

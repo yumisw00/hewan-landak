@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaryaBangun Konstruksi & Interior | Kontraktor Bergaransi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] } } }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-extrabold text-xl">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                </div>
+                <div>
+                    <span id="nav-nama" class="font-extrabold text-lg text-white tracking-tight block leading-none">KARYABANGUN</span>
+                    <span id="nav-tagline" class="text-[10px] text-amber-400 font-bold tracking-widest uppercase">Design & Build Contractor</span>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
+                <a href="#kalkulator" class="hover:text-amber-400 transition">Simulasi Biaya</a>
+                <a href="#proyek" class="hover:text-amber-400 transition">Portofolio Proyek</a>
+                <a href="#keunggulan" class="hover:text-amber-400 transition">Standar Mutu</a>
+            </div>
+            <button onclick="konsultasiUmum()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2.5 rounded-lg text-sm font-extrabold transition flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp text-base"></i> Gratis Survei Lokasi
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/60"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-5">
+                    <i class="fa-solid fa-certificate"></i> Kontraktor Resmi Bergaransi & Tepat Waktu
+                </span>
+                <h1 id="hero-judul" class="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-6">
+                    Wujudkan Bangunan & Renovasi Impian Tanpa Biaya Membengkak
+                </h1>
+                <p id="hero-deskripsi" class="text-slate-300 text-base leading-relaxed mb-8">
+                    Spesialis bangun rumah dari nol, renovasi total, konstruksi baja/kanopi, hingga interior komersial dengan RAB transparan dan garansi pemeliharaan tertulis.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#kalkulator" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-7 py-4 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Hitung Estimasi Biaya
+                    </a>
+                    <a href="#proyek" class="bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 font-semibold px-7 py-4 rounded-xl transition">
+                        Lihat Hasil Proyek
+                    </a>
+                </div>
+            </div>
+
+            <!-- KALKULATOR SIMULASI BIAYA OTOMATIS (KILLER FEATURE) -->
+            <div id="kalkulator" class="lg:col-span-5 bg-slate-900 border-2 border-amber-500/50 rounded-2xl p-6 sm:p-8 shadow-2xl">
+                <div class="flex items-center gap-3 mb-4 pb-4 border-b border-slate-800">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-lg text-white">Kalkulator RAB Instan</h2>
+                        <p class="text-xs text-slate-400">Hitung perkiraan anggaran proyek Anda</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs font-semibold text-slate-300 block mb-1.5">Pilih Jenis Pekerjaan</label>
+                        <select id="calc-paket" onchange="hitungEstimasi()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500"></select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-300 block mb-1.5">Luas Area / Volume (Meter Persegi - m²)</label>
+                        <input type="number" id="calc-luas" value="50" min="1" oninput="hitungEstimasi()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white font-bold focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-300 block mb-1.5">Lokasi Proyek (Kecamatan/Kota)</label>
+                        <input type="text" id="calc-lokasi" placeholder="Contoh: Sleman / Bekasi / Sidoarjo" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400 block">Estimasi Anggaran Biaya:</span>
+                        <span id="calc-hasil" class="text-2xl font-extrabold text-amber-400 block mt-1">Rp 0</span>
+                        <span id="calc-ket" class="text-[11px] text-slate-500 block mt-1">*Sudah termasuk material & jasa tukang</span>
+                    </div>
+
+                    <button onclick="kirimSimulasiWA()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Ajukan Survei & RAB Detail Gratis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEUNGGULAN KORPORAT -->
+    <section id="keunggulan" class="py-16 bg-slate-900/60 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                <i class="fa-solid fa-file-contract text-amber-400 text-2xl mb-3"></i>
+                <h3 class="font-bold text-white mb-1">Kontrak & RAB Jelas</h3>
+                <p class="text-xs text-slate-400">Rincian spesifikasi material transparan di awal, anti biaya siluman di tengah jalan.</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                <i class="fa-solid fa-compass-drafting text-amber-400 text-2xl mb-3"></i>
+                <h3 class="font-bold text-white mb-1">Gratis Desain 3D</h3>
+                <p class="text-xs text-slate-400">Bebas biaya gambar kerja arsitektur & visualisasi 3D untuk setiap kontrak pembangunan.</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                <i class="fa-solid fa-shield-halved text-amber-400 text-2xl mb-3"></i>
+                <h3 class="font-bold text-white mb-1">Garansi Retensi</h3>
+                <p class="text-xs text-slate-400">Jaminan pemeliharaan pasca serah terima kunci jika terjadi kebocoran atau kerusakan struktur.</p>
+            </div>
+            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                <i class="fa-solid fa-bars-progress text-amber-400 text-2xl mb-3"></i>
+                <h3 class="font-bold text-white mb-1">Laporan Mingguan</h3>
+                <p class="text-xs text-slate-400">Pantau progres proyek dari HP Anda melalui laporan foto/video rutin dari pengawas lapangan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTOFOLIO PROYEK -->
+    <section id="proyek" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Rekam Jejak Kami</span>
+            <h2 class="text-3xl font-extrabold text-white mt-1">Portofolio Proyek Selesai</h2>
+        </div>
+        <div id="grid-proyek" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500">
+        <p class="mb-1"><strong id="footer-nama" class="text-slate-300">KaryaBangun Konstruksi</strong> — <span id="footer-alamat"></span></p>
+        <p>Sistem Web & Kalkulator RAB dikembangkan oleh <a href="index.html" class="text-amber-400 font-bold hover:underline">PT Inti Logika Digital</a></p>
+    </footer>
+
+    <!-- =========================================================================
+         ENGINE KONFIGURASI KONSTRUKSI (EDIT DATA KLIEN DI SINI SAJA)
+         ========================================================================= -->
+    <script>
+        const CONFIG_KONSTRUKSI = {
+            nama: "KaryaBangun Konstruksi",
+            tagline: "General Contractor & Interior",
+            judulHero: "Bangun & Renovasi Properti Tepat Waktu, Bergaransi Resmi",
+            deskripsiHero: "Mitra terpercaya untuk pembangunan rumah tinggal, ruko, gudang, kanopi baja, dan interior dengan tim tukang bersertifikat.",
+            nomorWA: "6281234567890",
+            alamat: "Workshop & Office: Jl. Industri Raya No. 12, Kota Anda"
+        };
+
+        const DATA_PAKET_HARGA = [
+            { nama: "Bangun Rumah Baru (Standar Menengah)", hargaPerM2: 4000000, ket: "Termasuk struktur beton bertulang, bata merah/hebel, atap baja ringan, granit 60x60." },
+            { nama: "Bangun Rumah Luxury / 2 Lantai", hargaPerM2: 5200000, ket: "Spesifikasi premium, desain fasad modern, sanitasi Toto, cat Dulux Weathershield." },
+            { nama: "Renovasi Atap & Plafon Baja Ringan", hargaPerM2: 450000, ket: "Bongkar pasang atap lama, rangka baja ringan SNI, genteng metal/spandek & plafon PVC/Gypsum." },
+            { nama: "Pembuatan Kanopi / Konstruksi Besi Hollow", hargaPerM2: 550000, ket: "Besi hollow galvanis anti karat, atap Alderon/Spandek, cat duco rapi." },
+            { nama: "Custom Interior & Kitchen Set (Per Meter Lari)", hargaPerM2: 2200000, ket: "Material Multipleks 18mm (bukan serbuk kayu), finishing HPL Taco, engsel Slow Motion." }
+        ];
+
+        const DATA_PROYEK = [
+            { judul: "Rumah Tropis Modern 2 Lantai", lokasi: "Cluster Harmoni Indah", luas: "140 m²", durasi: "5 Bulan", foto: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" },
+            { judul: "Renovasi Fasad & Interior Cafe", lokasi: "Kawasan Sudirman", luas: "95 m²", durasi: "6 Minggu", foto: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" },
+            { judul: "Konstruksi Gudang & Kanopi Baja", lokasi: "Kawasan Industri Terpadu", luas: "350 m²", durasi: "3 Bulan", foto: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        const formatRp = (angka) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+
+        function initKonstruksi() {
+            document.getElementById('nav-nama').innerText = CONFIG_KONSTRUKSI.nama;
+            document.getElementById('nav-tagline').innerText = CONFIG_KONSTRUKSI.tagline;
+            document.getElementById('hero-judul').innerText = CONFIG_KONSTRUKSI.judulHero;
+            document.getElementById('hero-deskripsi').innerText = CONFIG_KONSTRUKSI.deskripsiHero;
+            document.getElementById('footer-nama').innerText = CONFIG_KONSTRUKSI.nama;
+            document.getElementById('footer-alamat').innerText = CONFIG_KONSTRUKSI.alamat;
+
+            // Isi Dropdown Kalkulator
+            document.getElementById('calc-paket').innerHTML = DATA_PAKET_HARGA.map((p, idx) => `<option value="${idx}">${p.nama} (${formatRp(p.hargaPerM2)}/m²)</option>`).join('');
+
+            // Render Proyek
+            document.getElementById('grid-proyek').innerHTML = DATA_PROYEK.map(p => `
+                <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden group">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="${p.foto}" alt="${p.judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur-sm text-amber-400 text-xs font-bold px-3 py-1 rounded-lg">${p.lokasi}</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-lg text-white mb-3">${p.judul}</h3>
+                        <div class="flex justify-between text-xs text-slate-400 border-t border-slate-800 pt-3">
+                            <span><i class="fa-solid fa-ruler-combined text-amber-400 mr-1"></i> Volume: ${p.luas}</span>
+                            <span><i class="fa-regular fa-calendar-check text-amber-400 mr-1"></i> Durasi: ${p.durasi}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            hitungEstimasi();
+        }
+
+        function hitungEstimasi() {
+            const idxPaket = document.getElementById('calc-paket').value;
+            const luas = parseFloat(document.getElementById('calc-luas').value) || 0;
+            const paket = DATA_PAKET_HARGA[idxPaket];
+
+            const total = luas * paket.hargaPerM2;
+            document.getElementById('calc-hasil').innerText = formatRp(total);
+            document.getElementById('calc-ket').innerText = paket.ket;
+        }
+
+        function kirimSimulasiWA() {
+            const idxPaket = document.getElementById('calc-paket').value;
+            const paket = DATA_PAKET_HARGA[idxPaket];
+            const luas = document.getElementById('calc-luas').value || 0;
+            const lokasi = document.getElementById('calc-lokasi').value.trim() || "Belum diisi";
+            const total = formatRp(luas * paket.hargaPerM2);
+
+            const pesan = `*SIMULASI RAB & JADWAL SURVEI - ${CONFIG_KONSTRUKSI.nama.toUpperCase()}*\n----------------------------------\n*Jenis Pekerjaan:* ${paket.nama}\n*Estimasi Volume:* ${luas} m²\n*Lokasi Proyek:* ${lokasi}\n*Estimasi Anggaran Sistem:* ${total}\n----------------------------------\nHalo Tim ${CONFIG_KONSTRUKSI.nama}, saya ingin berkonsultasi lebih lanjut dan menjadwalkan survei lokasi gratis. Terima kasih!`;
+
+            window.open(`https://wa.me/${CONFIG_KONSTRUKSI.nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        function konsultasiUmum() {
+            const pesan = `Halo Tim *${CONFIG_KONSTRUKSI.nama}*, saya ingin berkonsultasi mengenai rencana pembangunan / renovasi properti saya.`;
+            window.open(`https://wa.me/${CONFIG_KONSTRUKSI.nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        initKonstruksi();
+    </script>
+</body>
+</html>

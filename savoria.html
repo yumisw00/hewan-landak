@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savoria Resto & Cafe | Katalog Menu & Pesan Online</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-950 text-stone-100 font-sans antialiased pb-28">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-40 bg-stone-950/85 backdrop-blur-md border-b border-stone-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-amber-500 text-stone-950 flex items-center justify-center font-bold text-xl">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div>
+                    <span id="nav-nama-resto" class="font-serif font-bold text-xl text-white tracking-wide block leading-none">SAVORIA</span>
+                    <span id="nav-tagline" class="text-[11px] text-amber-400 tracking-widest uppercase">Authentic Culinary</span>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-stone-300">
+                <a href="#menu" class="hover:text-amber-400 transition">Daftar Menu</a>
+                <a href="#keunggulan" class="hover:text-amber-400 transition">Keunggulan</a>
+                <a href="#lokasi" class="hover:text-amber-400 transition">Lokasi & Jam Buka</a>
+            </div>
+            <button onclick="toggleModalKeranjang()" class="relative bg-stone-900 hover:bg-stone-800 border border-stone-700 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition">
+                <i class="fa-solid fa-bag-shopping text-amber-400 text-lg"></i>
+                <span class="hidden sm:inline">Pesanan</span>
+                <span id="badge-keranjang" class="bg-amber-500 text-stone-950 text-xs font-extrabold px-2 py-0.5 rounded-full">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-stone-900">
+        <div class="absolute inset-0 opacity-25 bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-950/60"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-widest mb-5">
+                <i class="fa-solid fa-star mr-1"></i> 100% Bahan Segar & Halal
+            </span>
+            <h1 id="hero-judul" class="font-serif text-4xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+                Cita Rasa Istimewa di Setiap Hidangan
+            </h1>
+            <p id="hero-deskripsi" class="max-w-xl mx-auto text-stone-300 text-base sm:text-lg mb-8">
+                Pesan langsung dari meja Anda atau pesan antar ke rumah tanpa antre dan tanpa biaya tambahan aplikasi.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#menu" class="bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold px-8 py-4 rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> Lihat Menu & Pesan
+                </a>
+                <a href="#lokasi" class="bg-stone-900/90 hover:bg-stone-800 text-white border border-stone-700 font-semibold px-8 py-4 rounded-xl transition flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-amber-400"></i> Reservasi / Katering
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- KATALOG MENU INTERAKTIF -->
+    <section id="menu" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <div>
+                <h2 class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">Katalog Digital</h2>
+                <h3 class="font-serif text-3xl font-bold text-white">Pilih Menu Favorit Anda</h3>
+            </div>
+            <!-- Filter Kategori -->
+            <div class="flex flex-wrap gap-2" id="kategori-container">
+                <button onclick="filterMenu('Semua')" class="btn-kategori bg-amber-500 text-stone-950 font-bold px-4 py-2 rounded-lg text-xs transition">Semua</button>
+                <button onclick="filterMenu('Makanan')" class="btn-kategori bg-stone-900 text-stone-300 hover:bg-stone-800 px-4 py-2 rounded-lg text-xs font-semibold transition">Makanan Utama</button>
+                <button onclick="filterMenu('Minuman')" class="btn-kategori bg-stone-900 text-stone-300 hover:bg-stone-800 px-4 py-2 rounded-lg text-xs font-semibold transition">Minuman Segar</button>
+                <button onclick="filterMenu('Paket')" class="btn-kategori bg-stone-900 text-stone-300 hover:bg-stone-800 px-4 py-2 rounded-lg text-xs font-semibold transition">Paket Katering / Hemat</button>
+            </div>
+        </div>
+
+        <!-- Grid Daftar Menu (Di-render otomatis oleh JavaScript) -->
+        <div id="grid-menu" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- KEUNGGULAN / KENAPA KAMI -->
+    <section id="keunggulan" class="py-16 bg-stone-900/50 border-y border-stone-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-8 text-center">
+            <div class="p-6">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-fire-burner"></i>
+                </div>
+                <h4 class="font-bold text-lg text-white mb-2">Dimasak Dadakan (Fresh)</h4>
+                <p class="text-stone-400 text-sm">Setiap pesanan diproses langsung oleh koki berpengalaman menggunakan bahan pilihan berkualitas tinggi.</p>
+            </div>
+            <div class="p-6">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+                <h4 class="font-bold text-lg text-white mb-2">Harga Asli Resto</h4>
+                <p class="text-stone-400 text-sm">Pesan lewat website resmi kami dijamin mendapatkan harga asli tanpa markup biaya komisi aplikasi.</p>
+            </div>
+            <div class="p-6">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-boxes-packing"></i>
+                </div>
+                <h4 class="font-bold text-lg text-white mb-2">Terima Pesanan Besar</h4>
+                <p class="text-stone-400 text-sm">Melayani pesanan nasi kotak, rapat kantor, syukuran, hingga katering harian dengan pengantaran tepat waktu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOKASI & JAM OPERASIONAL -->
+    <section id="lokasi" class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="bg-stone-900 border border-stone-800 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">Kunjungi Kami</span>
+                <h3 class="font-serif text-3xl font-bold text-white mt-2 mb-4">Lokasi & Jam Operasional</h3>
+                <p id="teks-alamat" class="text-stone-300 text-sm mb-6 leading-relaxed"></p>
+                <div class="space-y-3 text-sm text-stone-300 mb-8">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-regular fa-clock text-amber-400 w-5"></i>
+                        <span id="teks-jam">Senin - Minggu: 10.00 - 22.00 WIB</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-amber-400 w-5"></i>
+                        <span id="teks-telp">+62 812-3456-7890</span>
+                    </div>
+                </div>
+                <button onclick="hubungiAdminUmum()" class="bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-white font-semibold px-6 py-3 rounded-xl text-sm transition flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Tanya Admin / Booking Tempat
+                </button>
+            </div>
+            <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 text-center">
+                <i class="fa-solid fa-map-location-dot text-5xl text-amber-400 mb-4"></i>
+                <h4 class="font-bold text-white mb-2">Petunjuk Arah Google Maps</h4>
+                <p class="text-xs text-stone-400 mb-6">Klik tombol di bawah untuk membuka navigasi langsung menuju lokasi outlet kami.</p>
+                <a id="link-gmaps" href="https://maps.google.com" target="_blank" class="inline-block w-full py-3 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl text-sm transition">
+                    Buka di Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (BRANDING PT INTI LOGIKA DIGITAL) -->
+    <footer class="border-t border-stone-900 py-8 text-center text-xs text-stone-500">
+        <p class="mb-1">&copy; 2026 <span id="footer-nama" class="text-stone-300 font-semibold">Savoria Resto</span>. Hak Cipta Dilindungi.</p>
+        <p>Sistem Katalog & Kasir Digital dikembangkan oleh <a href="index.html" class="text-amber-400 hover:underline font-semibold">PT Inti Logika Digital</a></p>
+    </footer>
+
+    <!-- FLOATING BAR KERanjang BELANJA (MUNCUL SAAT ADA PESANAN) -->
+    <div id="floating-cart" class="fixed bottom-4 inset-x-4 max-w-3xl mx-auto z-40 hidden">
+        <div class="bg-amber-500 text-stone-950 p-4 rounded-2xl shadow-2xl flex justify-between items-center border-2 border-amber-300">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-stone-950 text-amber-400 flex items-center justify-center font-bold">
+                    <span id="float-jumlah">0</span>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider block">Total Estimasi Pesanan</span>
+                    <span id="float-total" class="text-lg font-extrabold">Rp 0</span>
+                </div>
+            </div>
+            <button onclick="toggleModalKeranjang()" class="bg-stone-950 hover:bg-stone-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition flex items-center gap-2">
+                Lanjut Pesan <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL CHECKOUT WHATSAPP -->
+    <div id="modal-keranjang" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-stone-900 border border-stone-800 rounded-3xl max-w-lg w-full p-6 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-stone-800">
+                <h3 class="font-bold text-lg text-white flex items-center gap-2">
+                    <i class="fa-solid fa-receipt text-amber-400"></i> Ringkasan Pesanan Anda
+                </h3>
+                <button onclick="toggleModalKeranjang()" class="text-stone-400 hover:text-white text-xl">&times;</button>
+            </div>
+
+            <!-- Daftar Item di Keranjang -->
+            <div id="list-keranjang" class="py-4 space-y-3 overflow-y-auto flex-1"></div>
+
+            <!-- Form Data Pemesan -->
+            <div class="pt-4 border-t border-stone-800 space-y-3">
+                <div class="flex justify-between text-base font-bold text-white mb-2">
+                    <span>Total Pembayaran:</span>
+                    <span id="modal-total-harga" class="text-amber-400">Rp 0</span>
+                </div>
+                <input type="text" id="input-nama" placeholder="Nama Anda (Wajib diisi)" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                <select id="input-tipe" class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+                    <option value="Makan di Tempat (Dine-In)">Makan di Tempat (Dine-In)</option>
+                    <option value="Bungkus / Ambil Sendiri (Takeaway)">Bungkus / Ambil Sendiri (Takeaway)</option>
+                    <option value="Pesan Antar (Delivery)">Pesan Antar Kurir (Delivery)</option>
+                </select>
+                <input type="text" id="input-catatan" placeholder="Nomor Meja / Alamat Antar / Catatan Pedas..." class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+
+                <button onclick="kirimPesananWA()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Kirim Struk Pesanan ke WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         ENGINE KONFIGURASI PT INTI LOGIKA DIGITAL (EDIT DATA KLIEN DI SINI SAJA!)
+         ========================================================================= -->
+    <script>
+        // 1. DATA PROFIL KLIEN (Cukup ubah ini saat membuat demo untuk calon klien)
+        const CONFIG_RESTO = {
+            nama: "Savoria Bistro & Grill",
+            tagline: "Authentic Taste & Coffee",
+            judulHero: "Sensasi Kuliner Berkelas, Harga Bersahabat",
+            deskripsiHero: "Nikmati hidangan racikan koki terbaik kami. Pesan langsung melalui katalog digital ini tanpa antre.",
+            nomorWA: "6282234184941", // Nomor WA Kasir Klien
+            alamat: "Jl. Raya Utama No. 88, Kawasan Bisnis Terpadu (Samping Bank BCA)",
+            jamBuka: "Setiap Hari: 10.00 - 22.00 WIB",
+            linkMaps: "https://maps.google.com"
+        };
+
+        // 2. DATA MENU MAKANAN & MINUMAN KLIEN
+        const DATA_MENU = [
+            { id: 1, nama: "Nasi Goreng Spesial Savoria", kategori: "Makanan", harga: 32000, laris: true, deskripsi: "Nasi goreng rempah dengan sate ayam madu, telur mata sapi, dan kerupuk udang.", foto: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, nama: "Ayam Bakar Madu Nusantara", kategori: "Makanan", harga: 35000, laris: true, deskripsi: "Ayam kampung bakar bumbu madu karamel lengkap dengan nasi hangat, lalapan & sambal terasi.", foto: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, nama: "Beef Sirloin Steak Crispy", kategori: "Makanan", harga: 55000, laris: false, deskripsi: "Daging sapi sirloin pilihan disiram saus lada hitam khas Savoria, kentang goreng & sayur segar.", foto: "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, nama: "Es Kopi Susu Gula Aren", kategori: "Minuman", harga: 18000, laris: true, deskripsi: "Perpaduan espresso biji Arabika pilihan dengan susu segar dan gula aren organik.", foto: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, nama: "Tropical Mango Squash", kategori: "Minuman", harga: 16000, laris: false, deskripsi: "Minuman segar ekstrak mangga asli dengan daun mint, nata de coco, dan soda ringan.", foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, nama: "Paket Katering Box Sultan (Min. 10 Box)", kategori: "Paket", harga: 40000, laris: true, deskripsi: "Nasi putih/liwet, Ayam Bakar/Goreng, Daging Rendang, Capcay, Buah, Kerupuk & Air Mineral.", foto: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        // STATE KERANJANG BELANJA
+        let keranjang = {};
+
+        // FORMAT RUPIAH
+        const formatRp = (angka) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+
+        // INISIALISASI HALAMAN
+        function initApp() {
+            document.getElementById('nav-nama-resto').innerText = CONFIG_RESTO.nama;
+            document.getElementById('nav-tagline').innerText = CONFIG_RESTO.tagline;
+            document.getElementById('hero-judul').innerText = CONFIG_RESTO.judulHero;
+            document.getElementById('hero-deskripsi').innerText = CONFIG_RESTO.deskripsiHero;
+            document.getElementById('teks-alamat').innerText = CONFIG_RESTO.alamat;
+            document.getElementById('teks-jam').innerText = CONFIG_RESTO.jamBuka;
+            document.getElementById('teks-telp').innerText = "+" + CONFIG_RESTO.nomorWA;
+            document.getElementById('link-gmaps').href = CONFIG_RESTO.linkMaps;
+            document.getElementById('footer-nama').innerText = CONFIG_RESTO.nama;
+            renderMenu('Semua');
+        }
+
+        // RENDER DAFTAR MENU
+        function renderMenu(kategoriFilter) {
+            const container = document.getElementById('grid-menu');
+            container.innerHTML = '';
+            const menuTersaring = kategoriFilter === 'Semua' ? DATA_MENU : DATA_MENU.filter(m => m.kategori === kategoriFilter);
+
+            menuTersaring.forEach(item => {
+                const jmlDiKeranjang = keranjang[item.id] ? keranjang[item.id].qty : 0;
+                container.innerHTML += `
+                    <div class="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-amber-500/40 transition group">
+                        <div>
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="${item.foto}" alt="${item.nama}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                ${item.laris ? '<span class="absolute top-3 left-3 bg-amber-500 text-stone-950 text-[11px] font-extrabold px-2.5 py-1 rounded-full uppercase">Best Seller</span>' : ''}
+                            </div>
+                            <div class="p-5">
+                                <span class="text-[11px] text-amber-400 font-semibold uppercase tracking-wider">${item.kategori}</span>
+                                <h4 class="font-bold text-lg text-white mt-1 mb-2">${item.nama}</h4>
+                                <p class="text-xs text-stone-400 leading-relaxed">${item.deskripsi}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-3 border-t border-stone-800/60 flex justify-between items-center">
+                            <span class="font-extrabold text-amber-400 text-base">${formatRp(item.harga)}</span>
+                            <div class="flex items-center gap-2">
+                                ${jmlDiKeranjang > 0 ? `
+                                    <button onclick="ubahQty(${item.id}, -1)" class="w-8 h-8 rounded-lg bg-stone-800 hover:bg-stone-700 text-white font-bold">-</button>
+                                    <span class="text-sm font-bold w-5 text-center">${jmlDiKeranjang}</span>
+                                    <button onclick="ubahQty(${item.id}, 1)" class="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 font-bold">+</button>
+                                ` : `
+                                    <button onclick="ubahQty(${item.id}, 1)" class="bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-white px-4 py-2 rounded-xl text-xs font-bold transition">
+                                        + Tambah
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterMenu(kategori) {
+            renderMenu(kategori);
+        }
+
+        // TAMBAH / KURANG ITEM KERANJANG
+        function ubahQty(idMenu, delta) {
+            const produk = DATA_MENU.find(m => m.id === idMenu);
+            if (!keranjang[idMenu]) {
+                keranjang[idMenu] = { ...produk, qty: 0 };
+            }
+            keranjang[idMenu].qty += delta;
+            if (keranjang[idMenu].qty <= 0) {
+                delete keranjang[idMenu];
+            }
+            updateUIKeranjang();
+            renderMenu('Semua');
+        }
+
+        // UPDATE TAMPILAN KERANJANG & TOTAL
+        function updateUIKeranjang() {
+            const items = Object.values(keranjang);
+            const totalItem = items.reduce((sum, i) => sum + i.qty, 0);
+            const totalHarga = items.reduce((sum, i) => sum + (i.harga * i.qty), 0);
+
+            document.getElementById('badge-keranjang').innerText = totalItem;
+            document.getElementById('float-jumlah').innerText = totalItem;
+            document.getElementById('float-total').innerText = formatRp(totalHarga);
+            document.getElementById('modal-total-harga').innerText = formatRp(totalHarga);
+
+            const floatingBar = document.getElementById('floating-cart');
+            totalItem > 0 ? floatingBar.classList.remove('hidden') : floatingBar.classList.add('hidden');
+
+            // Render isi modal
+            const listContainer = document.getElementById('list-keranjang');
+            if (items.length === 0) {
+                listContainer.innerHTML = `<p class="text-center text-stone-500 text-sm py-8">Belum ada menu yang dipilih.</p>`;
+            } else {
+                listContainer.innerHTML = items.map(i => `
+                    <div class="flex justify-between items-center bg-stone-950 p-3 rounded-xl border border-stone-800">
+                        <div>
+                            <h5 class="text-sm font-bold text-white">${i.nama}</h5>
+                            <span class="text-xs text-amber-400">${formatRp(i.harga)} x ${i.qty} = ${formatRp(i.harga * i.qty)}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="ubahQty(${i.id}, -1)" class="w-7 h-7 rounded bg-stone-800 text-white text-xs font-bold">-</button>
+                            <span class="text-xs font-bold">${i.qty}</span>
+                            <button onclick="ubahQty(${i.id}, 1)" class="w-7 h-7 rounded bg-amber-500 text-stone-950 text-xs font-bold">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleModalKeranjang() {
+            const modal = document.getElementById('modal-keranjang');
+            modal.classList.toggle('hidden');
+        }
+
+        // KIRIM STRUK PESANAN KE WHATSAPP KASIR
+        function kirimPesananWA() {
+            const items = Object.values(keranjang);
+            if (items.length === 0) return alert("Pilih minimal 1 menu terlebih dahulu!");
+
+            const nama = document.getElementById('input-nama').value.trim();
+            const tipe = document.getElementById('input-tipe').value;
+            const catatan = document.getElementById('input-catatan').value.trim() || "-";
+
+            if (!nama) return alert("Mohon isi Nama Anda terlebih dahulu.");
+
+            const totalHarga = items.reduce((sum, i) => sum + (i.harga * i.qty), 0);
+            let daftarPesananTeks = items.map((i, idx) => `${idx + 1}. *${i.nama}* (${i.qty}x) = ${formatRp(i.harga * i.qty)}`).join('\n');
+
+            const pesan = `*PESANAN BARU - ${CONFIG_RESTO.nama.toUpperCase()}*\n----------------------------------\n*Nama Pemesan:* ${nama}\n*Tipe Pesanan:* ${tipe}\n*Detail/Meja/Alamat:* ${catatan}\n----------------------------------\n*Daftar Menu:*\n${daftarPesananTeks}\n----------------------------------\n*TOTAL TAGIHAN: ${formatRp(totalHarga)}*\n\nMohon konfirmasi pesanan saya. Terima kasih!`;
+
+            window.open(`https://wa.me/${CONFIG_RESTO.nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        function hubungiAdminUmum() {
+            const pesan = `Halo Admin *${CONFIG_RESTO.nama}*, saya ingin bertanya mengenai informasi reservasi tempat / pesanan katering.`;
+            window.open(`https://wa.me/${CONFIG_RESTO.nomorWA}?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        // Jalankan saat halaman dimuat
+        initApp();
+    </script>
+</body>
+</html>
